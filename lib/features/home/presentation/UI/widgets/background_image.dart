@@ -10,7 +10,7 @@ class BackGroundImage extends StatelessWidget {
     return SvgPicture.asset(
       'assets/icons/wavesOpacity.svg',
       height: MediaQuery.of(context).size.height / 1.5,
-      colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+      colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
       fit: BoxFit.cover,
     );
   }

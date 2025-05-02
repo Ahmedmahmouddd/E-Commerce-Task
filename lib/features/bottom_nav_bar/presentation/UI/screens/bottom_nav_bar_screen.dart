@@ -38,21 +38,3 @@ class NavBarHome extends StatelessWidget {
 }
 
 //
-
-//
-
-//
-
-//
-
-//
-
-//
-
-//
-
-//
-
-//
-
-//

@@ -15,7 +15,7 @@ class HomeHeadline extends StatelessWidget {
           Row(
             children: [
               Text("For ", style: AppTextStyles.font38WhiteBold),
-              Text("You", style: AppTextStyles.font24PrimaryBold),
+              Text("You", style: AppTextStyles.font38PrimaryBold),
             ],
           ),
         ],

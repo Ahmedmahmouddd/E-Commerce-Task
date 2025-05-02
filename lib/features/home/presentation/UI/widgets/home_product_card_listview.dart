@@ -1,4 +1,3 @@
-import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/home_cubit/home_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/home_product_card.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/loading_indicator.dart';
@@ -14,7 +13,7 @@ class HomeProductCardListView extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is HomeLoading) {
-          return const Expanded(child: LoadingCircle(color: AppColors.primary));
+          return const Expanded(child: LoadingCircle());
         } else if (state is HomeFailure) {
           return Center(child: Text(state.message));
         } else if (state is HomeSuccess) {

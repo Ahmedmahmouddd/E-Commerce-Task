@@ -1,27 +1,32 @@
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FormButton extends StatelessWidget {
-  const FormButton({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     super.key,
     required this.onPressed,
     required this.text,
     required this.loading,
+    this.width,
+    this.height,
   });
 
   final void Function() onPressed;
   final String text;
   final bool loading;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
-      height: 50,
+      width: width ?? 200,
+      height: height ?? 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          overlayColor: Colors.grey,
+          backgroundColor: AppColors.primary,
+          overlayColor: AppColors.grey,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -34,14 +39,10 @@ class FormButton extends StatelessWidget {
                 ? const SizedBox(
                   width: 25,
                   height: 50,
-                  child: CircularProgressIndicator(color: Colors.black),
+                  child: LoadingCircle(),
                 )
                 : SizedBox(
-                  child: Baseline(
-                    baseline: 16.sp,
-                    baselineType: TextBaseline.alphabetic,
-                    child: Text(text),
-                  ),
+                  child: Text(text, style: AppTextStyles.font16BlackSemiBold),
                 ),
       ),
     );

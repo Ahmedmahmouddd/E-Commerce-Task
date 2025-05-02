@@ -1,6 +1,7 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/favorites_positioned_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -123,20 +124,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 if (widget.product.rating >= index + 1) {
                                   return const Icon(
                                     Icons.star,
-                                    color: AppColors.yellow,
+                                    color: AppColors.primary,
                                     size: 20,
                                   );
                                 } else if (widget.product.rating > index &&
                                     widget.product.rating < index + 1) {
                                   return const Icon(
                                     Icons.star_half,
-                                    color: AppColors.yellow,
+                                    color: AppColors.primary,
                                     size: 20,
                                   );
                                 } else {
                                   return const Icon(
                                     Icons.star_border,
-                                    color: AppColors.yellow,
+                                    color: AppColors.primary,
                                     size: 20,
                                   );
                                 }
@@ -224,17 +225,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 onPressed: () => Navigator.pop(context),
               ),
             ),
-            Positioned(
-              top: 12,
-              right: 12,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.favorite_border_rounded,
-                  color: Colors.black,
-                ),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ),
+            const FavoritePositionedWidget(top: 16, right: 16),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -7,11 +8,9 @@ class BottomNavBarButton extends StatelessWidget {
     required this.onTap,
     required this.selectedIcon,
     required this.isSelected,
-    required this.unSelectedIcon,
   });
   final Function() onTap;
   final String selectedIcon;
-  final String unSelectedIcon;
 
   final bool isSelected;
 
@@ -22,10 +21,9 @@ class BottomNavBarButton extends StatelessWidget {
       child: SizedBox(
         height: 54,
         child: Center(
-          child: SvgPicture.asset(
-            isSelected ? selectedIcon : unSelectedIcon,
+          child: SvgPicture.asset( selectedIcon,
             height: 24,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            colorFilter:  ColorFilter.mode(isSelected ? AppColors.primary : AppColors.white, BlendMode.srcIn),
           ),
         ),
       ),

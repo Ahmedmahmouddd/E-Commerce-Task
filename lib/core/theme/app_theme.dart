@@ -4,11 +4,11 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color darkWhite = Color.fromARGB(255, 232, 232, 232);
   static const Color black = Colors.black;
-  static const Color grey = Color.fromARGB(255, 71, 70, 70);
-  static const Color yellow = Color.fromARGB(255, 255, 200, 0);
-  static const Color primaryLight = Color.fromARGB(255, 143, 90, 208);
-  static const Color primary = Color.fromARGB(255, 44, 52, 134);
-  static const Color primaryDark = Color.fromRGBO(54, 17, 100, 1);
+  static const Color grey = Color.fromARGB(255, 127, 127, 127);
+  static const Color lightGrey = Color(0xFF606060);
+  static const Color primaryLight = Color.fromARGB(255, 255, 226, 121);
+  static const Color primary = Color(0xFFFFC800);
+  static const Color primaryDark = Color(0xFFC59B01);
 }
 
 class AppTextStyles {
@@ -16,6 +16,12 @@ class AppTextStyles {
     fontSize: 38,
     fontWeight: FontWeight.bold,
     color: AppColors.white,
+  );
+
+  static const TextStyle font38PrimaryBold = TextStyle(
+    fontSize: 38,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primary,
   );
 
   static const TextStyle font32BlackBold = TextStyle(
@@ -44,6 +50,12 @@ class AppTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.bold,
     color: AppColors.primary,
+  );
+
+static const TextStyle font20BlackBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: AppColors.black,
   );
 
   static const TextStyle font20WhiteBold = TextStyle(

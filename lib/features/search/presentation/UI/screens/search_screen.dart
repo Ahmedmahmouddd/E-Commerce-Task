@@ -69,9 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     BlocBuilder<SearchCubit, SearchState>(
                       builder: (context, state) {
                         if (state is SearchLoading) {
-                          return const Expanded(
-                            child: LoadingCircle(color: AppColors.primary),
-                          );
+                          return const Expanded(child: LoadingCircle());
                         } else if (state is SearchFailure) {
                           return Center(child: Text(state.message));
                         } else if (state is SearchSuccess) {

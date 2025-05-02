@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/favorites_positioned_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';
@@ -27,7 +28,7 @@ class HomeBigProductCard extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.05),
+                color: AppColors.white.withValues(alpha: 0.1),
                 spreadRadius: 1,
                 blurRadius: 16,
                 offset: const Offset(0, 8),
@@ -51,15 +52,7 @@ class HomeBigProductCard extends StatelessWidget {
                 ),
               ),
 
-              const Positioned(
-                top: 12,
-                right: 12,
-                child: Icon(
-                  Icons.favorite_border,
-                  color: AppColors.primary,
-                  size: 28,
-                ),
-              ),
+              const FavoritePositionedWidget(),
 
               Positioned(
                 bottom: 12,

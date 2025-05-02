@@ -1,7 +1,7 @@
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/dependency_injection.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/auth/view/screens/signin_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/bottom_nav_bar/presentation/UI/cubit/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
-import 'package:ahmed_mahmoud_flutter_task/features/bottom_nav_bar/presentation/UI/screens/bottom_nav_bar_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           theme: appTheme,
           debugShowCheckedModeBanner: false,
-          home: const NavBarHome(),
+          home: const SigninScreen(),
         ),
       ),
     );

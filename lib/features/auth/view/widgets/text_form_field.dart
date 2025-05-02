@@ -14,7 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onChanged,
   });
 
-  final IconButton? suffixIcon;
+  final Widget? suffixIcon;
   final TextEditingController? controller;
   final String? hint;
   final IconData? icon;
@@ -36,21 +36,21 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obsecure!,
         obscuringCharacter: "*",
         cursorWidth: 2.5,
-        cursorColor: AppColors.primary,
+        cursorColor: AppColors.primaryDark,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         inputFormatters: [LengthLimitingTextInputFormatter(50)],
         style: AppTextStyles.font16BlackSemiBold,
+
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
           hintText: hint,
           hintStyle: AppTextStyles.font16GreySemiBold.copyWith(
-            color: AppColors.grey.withValues(alpha: 0.7),
+            color: AppColors.grey,
           ),
+          suffixIcon: suffixIcon,
           prefixIcon:
-              icon != null
-                  ? Icon(icon, color: AppColors.grey.withValues(alpha: 0.7))
-                  : null,
+              icon != null ? Icon(icon, color: AppColors.primaryDark) : null,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 0,
             vertical: 0,

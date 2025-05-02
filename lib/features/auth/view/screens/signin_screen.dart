@@ -1,12 +1,13 @@
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/dependency_injection.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/cubits/signin_cubit/signin_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/widgets/form_button.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/widgets/snack_bar.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/widgets/text_form_field.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/bottom_nav_bar/presentation/UI/screens/bottom_nav_bar_screen.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -47,11 +48,7 @@ class _SigninScreenScreenState extends State<SigninScreen> {
         child: Scaffold(
           body: Stack(
             children: [
-              SvgPicture.asset(
-                'assets/icons/wavesOpacity.svg',
-                height: MediaQuery.of(context).size.height / 1.5,
-                fit: BoxFit.cover,
-              ),
+              const BackGroundImage(),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,21 +56,21 @@ class _SigninScreenScreenState extends State<SigninScreen> {
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 24,
-                      ),
+                      padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey,
+                        color: AppColors.grey,
                       ),
                       child: Form(
                         key: signinKey,
                         child: SizedBox(
                           child: Column(
                             children: [
-                              const Text("Sign in"),
-                              const SizedBox(height: 30),
+                              const Text(
+                                "Sign in",
+                                style: AppTextStyles.font22WhiteBold,
+                              ),
+                              const SizedBox(height: 24),
                               // Email
                               CustomTextFormField(
                                 controller: emailController,
@@ -91,24 +88,28 @@ class _SigninScreenScreenState extends State<SigninScreen> {
                                 obsecure: passwordVisible,
                                 suffixIcon:
                                     passwordVisible
-                                        ? IconButton(
-                                          onPressed: () {
+                                        ? GestureDetector(
+                                          onTap: () {
                                             setState(() {
                                               passwordVisible =
                                                   !passwordVisible;
                                             });
                                           },
-                                          icon: const Icon(Icons.visibility),
+                                          child: const Icon(
+                                            Icons.visibility,
+                                            color: Colors.grey,
+                                          ),
                                         )
-                                        : IconButton(
-                                          onPressed: () {
+                                        : GestureDetector(
+                                          onTap: () {
                                             setState(() {
                                               passwordVisible =
                                                   !passwordVisible;
                                             });
                                           },
-                                          icon: const Icon(
+                                          child: const Icon(
                                             Icons.visibility_off_outlined,
+                                            color: Colors.grey,
                                           ),
                                         ),
                                 controller: passwordController,
@@ -118,21 +119,14 @@ class _SigninScreenScreenState extends State<SigninScreen> {
                                   if (value == null || value.isEmpty) {
                                     return "Please enter a password";
                                   }
-                                  if (value.length < 8) {
-                                    return "Password must be at least 8 characters long";
-                                  }
-                                  if (value.length > 25) {
-                                    return "Password must be less than 25 characters long";
-                                  }
                                   return null;
                                 },
                               ),
-
-                              const SizedBox(height: 40),
+                              const SizedBox(height: 24),
                               BlocBuilder<SigninCubit, SigninState>(
                                 builder: (context, state) {
                                   final cubit = context.read<SigninCubit>();
-                                  return FormButton(
+                                  return CustomButton(
                                     loading: state is SigninLoading,
                                     text: "Sign in",
                                     onPressed: () {

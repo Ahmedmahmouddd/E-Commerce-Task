@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/favorites_positioned_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';
@@ -56,15 +57,7 @@ class SmallProductBox extends StatelessWidget {
                 ),
               ),
 
-              const Positioned(
-                top: 8,
-                right: 8,
-                child: Icon(
-                  Icons.favorite_border_outlined,
-                  color: AppColors.primary,
-                  size: 20,
-                ),
-              ),
+              const FavoritePositionedWidget(top: 8, right: 8),
             ],
           ),
         ),

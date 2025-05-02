@@ -1,5 +1,6 @@
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/favorites_positioned_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/screens/product_details_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';
@@ -41,7 +42,10 @@ class StaggerTile extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.network(product.images.first, fit: BoxFit.cover),
+              CachedNetworkImage(
+                imageUrl: product.images.first,
+                fit: BoxFit.cover,
+              ),
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -64,7 +68,7 @@ class StaggerTile extends StatelessWidget {
                   children: [
                     Text(
                       product.title,
-                      style: AppTextStyles.font22WhiteBold.copyWith(
+                      style: AppTextStyles.font16WhiteSemiBold.copyWith(
                         shadows: [
                           const Shadow(
                             color: AppColors.grey,
@@ -86,7 +90,7 @@ class StaggerTile extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '\$${product.price}',
-                      style: AppTextStyles.font22WhiteBold,
+                      style: AppTextStyles.font16WhiteSemiBold,
                     ),
                   ],
                 ),

@@ -62,6 +62,12 @@ static const TextStyle font20BlackBold = TextStyle(
     color: AppColors.black,
   );
 
+static const TextStyle font16WhiteSemiBold = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white,
+  );
+
   static const TextStyle font16GreySemiBold = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,

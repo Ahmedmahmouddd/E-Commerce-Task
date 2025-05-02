@@ -78,10 +78,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 shape: BoxShape.circle,
                                 color:
                                     _currentIndex == index
-                                        ? AppColors.blueGrey
-                                        : AppColors.blueGrey.withValues(
-                                          alpha: 0.3,
-                                        ),
+                                        ? AppColors.grey
+                                        : AppColors.grey.withValues(alpha: 0.3),
                               ),
                             ),
                           ),
@@ -146,7 +144,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               const SizedBox(width: 8),
                               Text(
                                 '${widget.product.rating}',
-                                style: AppTextStyles.font14BlackSemiBold,
+                                style: AppTextStyles.font14RedSemiBold,
                               ),
                               const SizedBox(width: 8),
                               Text(

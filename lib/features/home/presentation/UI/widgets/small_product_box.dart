@@ -31,7 +31,7 @@ class SmallProductBox extends StatelessWidget {
             color: AppColors.white,
             boxShadow: [
               BoxShadow(
-                color: AppColors.purple.withValues(alpha: 0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 spreadRadius: 1,
                 blurRadius: 16,
                 offset: const Offset(0, 8),
@@ -61,7 +61,7 @@ class SmallProductBox extends StatelessWidget {
                 right: 8,
                 child: Icon(
                   Icons.favorite_border_outlined,
-                  color: AppColors.purple,
+                  color: AppColors.primary,
                   size: 20,
                 ),
               ),

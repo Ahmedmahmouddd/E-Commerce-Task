@@ -11,7 +11,7 @@ class YouMightAlsoLikeText extends StatelessWidget {
       padding: EdgeInsets.only(left: 12),
       child: Text(
         AppConstants.youMightAlsoLike,
-        style: AppTextStyles.font20PurpleBold,
+        style: AppTextStyles.font20PrimaryBold,
       ),
     );
   }

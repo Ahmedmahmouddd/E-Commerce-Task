@@ -14,7 +14,7 @@ class HomeProductCardListView extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is HomeLoading) {
-          return const Expanded(child: LoadingCircle(color: AppColors.purple));
+          return const Expanded(child: LoadingCircle(color: AppColors.primary));
         } else if (state is HomeFailure) {
           return Center(child: Text(state.message));
         } else if (state is HomeSuccess) {

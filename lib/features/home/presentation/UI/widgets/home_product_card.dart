@@ -27,7 +27,7 @@ class HomeBigProductCard extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: AppColors.purple.withValues(alpha: 0.1),
+                color: AppColors.primary.withValues(alpha: 0.05),
                 spreadRadius: 1,
                 blurRadius: 16,
                 offset: const Offset(0, 8),
@@ -56,7 +56,7 @@ class HomeBigProductCard extends StatelessWidget {
                 right: 12,
                 child: Icon(
                   Icons.favorite_border,
-                  color: AppColors.purple,
+                  color: AppColors.primary,
                   size: 28,
                 ),
               ),
@@ -73,7 +73,7 @@ class HomeBigProductCard extends StatelessWidget {
                       style: AppTextStyles.font22WhiteBold.copyWith(
                         shadows: [
                           const Shadow(
-                            color: AppColors.blueGrey,
+                            color: AppColors.grey,
                             offset: Offset(2, 2),
                             blurRadius: 12,
                           ),
@@ -89,7 +89,7 @@ class HomeBigProductCard extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     Text(
                       '\$${product.price}',
                       style: AppTextStyles.font22WhiteBold,

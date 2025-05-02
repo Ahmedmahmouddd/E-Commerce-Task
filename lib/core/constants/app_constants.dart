@@ -11,5 +11,8 @@ class AppConstants {
   static const String showAll = "Show All";
   static const String youMightAlsoLike = "You Might Also Like";
   static const String addToCart = "Add To Cart";
-
+  static const String priceLowestToHeighest = "?sortBy=price&order=asc";
+  static const String priceHeighestToLowest = "?sortBy=price&order=desc";
+  static const String timeNewestToOldest = "?sortBy=time&order=asc";
+  static const String timeOldestToNewest = "?sortBy=time&order=desc";
 }

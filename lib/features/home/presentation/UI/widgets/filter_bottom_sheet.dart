@@ -1,19 +1,20 @@
-
-  import 'package:flutter/material.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/home_cubit/home_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<dynamic> showFilterBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      barrierColor: Colors.black38,
-      enableDrag: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) {
-        return const FilterBottomSheet();
-      },
-    );
-  }
-
+  return showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    barrierColor: Colors.black38,
+    enableDrag: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) {
+      return const FilterBottomSheet();
+    },
+  );
+}
 
 class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({super.key});
@@ -36,23 +37,37 @@ class FilterBottomSheet extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(100),
+              GestureDetector(
+                onTap: () {
+                  BlocProvider.of<HomeCubit>(
+                    context,
+                  ).getSortedProducts(AppConstants.priceHeighestToLowest);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: const Text("Highest To Lowest"),
                 ),
-                child: const Text("Highest To Lowest"),
               ),
               const SizedBox(width: 12),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(100),
+              GestureDetector(
+                onTap: () {
+                  BlocProvider.of<HomeCubit>(
+                    context,
+                  ).getSortedProducts(AppConstants.priceLowestToHeighest);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: const Text("Lowest To Highest"),
                 ),
-                child: const Text("Lowest To Highest"),
               ),
             ],
           ),

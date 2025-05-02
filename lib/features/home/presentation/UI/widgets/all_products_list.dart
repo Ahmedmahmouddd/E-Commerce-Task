@@ -9,28 +9,32 @@ class AllProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<HomeCubit>(context);
     final size = MediaQuery.of(context).size;
     return SizedBox(
       height: size.height * 0.18,
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          if (state is HomeLoading) {
-            return const LoadingCircle();
-          } else if (state is HomeFailure) {
-            return Center(child: Text(state.message));
-          } else if (state is HomeSuccess) {
-            return ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(width: 12),
-              padding: const EdgeInsets.all(12),
-              scrollDirection: Axis.horizontal,
-              itemCount: state.products.length,
-              itemBuilder: (context, index) {
-                return SmallProductBox(product: state.products[index]);
-              },
-            );
-          } else {
-            return const SizedBox();
-          }
+          return BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              if (state is HomeLoading || state is HomeInitial) {
+                return const LoadingCircle();
+              } else if (state is HomeFailure) {
+                return Center(child: Text(state.message));
+              } else {
+                return ListView.separated(
+                  separatorBuilder:
+                      (context, index) => const SizedBox(width: 12),
+                  padding: const EdgeInsets.all(12),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: cubit.products.length,
+                  itemBuilder: (context, index) {
+                    return SmallProductBox(product: cubit.products[index]);
+                  },
+                );
+              }
+            },
+          );
         },
       ),
     );

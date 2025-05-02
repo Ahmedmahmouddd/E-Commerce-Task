@@ -84,7 +84,7 @@ class CartContainer extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(
-              "assets/icons/selectedAdd.svg",
+              "assets/icons/add.svg",
               width: 80,
               height: 80,
               fit: BoxFit.cover,

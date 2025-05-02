@@ -3,6 +3,10 @@ import 'package:ahmed_mahmoud_flutter_task/features/auth/data/repository/auth_re
 import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/repository/auth_repository.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/cubits/signin_cubit/signin_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/bottom_nav_bar/presentation/UI/cubit/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/data/data_source.dart/cart_data_source.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/data/repository/cart_repository_impl.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/repository/cart_repository.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/data/data_source/product_data_source.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/data/repository/product_repository_impl.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/repository/product_repository.dart';
@@ -30,16 +34,22 @@ void init() {
   sl.registerLazySingleton<SearchRemoteDataSource>(
     () => SearchRemoteDataSourceImpl(sl()),
   );
-
+  sl.registerLazySingleton<CartRemoteDataSource>(
+    () => CartRemoteDataSourceImpl(sl()),
+  );
+  //
   // Repository
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
   sl.registerLazySingleton<ProductRepository>(
     () => ProductRepositoryImpl(sl()),
   );
   sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl(sl()));
+  sl.registerLazySingleton<CartRepository>(() => CartRepositoryImpl(sl()));
+  //
   // Cubits
   sl.registerFactory(() => SigninCubit(sl()));
   sl.registerFactory(() => BottomNavBarCubit());
   sl.registerFactory(() => HomeCubit(sl()));
   sl.registerFactory(() => SearchCubit(sl()));
+  sl.registerFactory(() => CartCubit(sl()));
 }

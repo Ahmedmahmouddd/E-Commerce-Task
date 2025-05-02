@@ -9,27 +9,28 @@ class HomeProductCardListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<HomeCubit>(context);
+
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is HomeLoading) {
+        if (state is HomeLoading || state is HomeInitial) {
           return const Expanded(child: LoadingCircle());
         } else if (state is HomeFailure) {
           return Center(child: Text(state.message));
-        } else if (state is HomeSuccess) {
+        } else {
           return Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(width: 12),
               padding: const EdgeInsets.all(12),
               scrollDirection: Axis.horizontal,
-              itemCount: state.products.length,
+              itemCount: cubit.products.length,
               itemBuilder: (context, index) {
-                return HomeBigProductCard(product: state.products[index]);
+                return HomeBigProductCard(product: cubit.products[index]);
               },
             ),
           );
         }
-        return const Center(child: Text("Something went wrong"));
       },
     );
   }

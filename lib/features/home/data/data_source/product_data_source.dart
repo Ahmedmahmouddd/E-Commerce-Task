@@ -41,7 +41,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
   ) async {
     try {
       final response = await DioClient().get(
-        "${AppConstants.apiPproducts}?${sort ?? ''}",
+        "${AppConstants.apiPproducts}$sort",
       );
       if (response.statusCode == 200 && response.data != null) {
         final productList = ProductsResponseModel.fromJson(response.data);

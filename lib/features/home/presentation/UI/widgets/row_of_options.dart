@@ -1,9 +1,8 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
-import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/home_cubit/home_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/screens/show_all_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RowOfOptions extends StatelessWidget {
   const RowOfOptions({super.key});
@@ -26,11 +25,7 @@ class RowOfOptions extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (context) => ShowAllScreen(
-                            products:
-                                BlocProvider.of<HomeCubit>(context).products,
-                          ),
+                      builder: (context) => const ShowAllScreen(),
                     ),
                   );
                 },

@@ -37,6 +37,20 @@ class UserModel {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'username': username,
+      'email': email,
+      'firstName': firstName,
+      'lastName': lastName,
+      'gender': gender,
+      'image': image,
+      'accessToken': accessToken,
+      'refreshToken': refreshToken,
+    };
+  }
+
   UserEntity toEntity() {
     return UserEntity(
       id: id,

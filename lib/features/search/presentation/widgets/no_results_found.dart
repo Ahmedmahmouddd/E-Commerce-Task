@@ -19,11 +19,7 @@ class FillterWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              Icons.filter_vintage,
-              size: 80,
-              color: AppColors.primary,
-            ),
+            Icon(icon ?? Icons.search_off, size: 80, color: AppColors.primary),
             const SizedBox(height: 8),
             Text(message, style: AppTextStyles.font20BlackBold),
           ],

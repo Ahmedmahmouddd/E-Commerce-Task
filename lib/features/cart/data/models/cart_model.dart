@@ -53,7 +53,7 @@ class ProductModel {
   final double price;
   final int quantity;
   final double total;
-  final double discountPercentage;
+  final double? discountPercentage;
   final double discountedTotal;
   final String thumbnail;
 
@@ -63,7 +63,7 @@ class ProductModel {
     required this.price,
     required this.quantity,
     required this.total,
-    required this.discountPercentage,
+    this.discountPercentage,
     required this.discountedTotal,
     required this.thumbnail,
   });
@@ -76,7 +76,10 @@ class ProductModel {
       quantity: json['quantity'],
       total: (json['total'] as num).toDouble(),
       discountPercentage: (json['discountPercentage'] as num).toDouble(),
-      discountedTotal: (json['discountedTotal'] as num).toDouble(),
+      discountedTotal:
+          json['discountedTotal'] != null
+              ? (json['discountedTotal'] as num).toDouble()
+              : 0.0,
       thumbnail: json['thumbnail'],
     );
   }
@@ -117,7 +120,7 @@ extension ProductModelMapper on ProductModel {
       price: price,
       quantity: quantity,
       total: total,
-      discountPercentage: discountPercentage,
+      discountPercentage: discountPercentage ?? 0.0,
       discountedTotal: discountedTotal,
       thumbnail: thumbnail,
     );

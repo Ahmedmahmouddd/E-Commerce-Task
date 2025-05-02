@@ -1,10 +1,15 @@
 import 'package:ahmed_mahmoud_flutter_task/core/models/failure_model.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/network/dio_client.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_model.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 abstract class CartRemoteDataSource {
-  Future<Either<FailureModel, OrderModel>> fetchCart(int id);
+  Future<Either<FailureModel, OrderModel>> addCart(
+    int userId,
+    List<CartSendModel> list,
+  );
 }
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
@@ -13,13 +18,20 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   CartRemoteDataSourceImpl(this.dio);
 
   @override
-  Future<Either<FailureModel, OrderModel>> fetchCart(int id) async {
+  Future<Either<FailureModel, OrderModel>> addCart(
+    int userId,
+    List<CartSendModel> list,
+  ) async {
     try {
-      final response = await dio.get('https://dummyjson.com/carts/$id');
-      if (response.statusCode == 200) {
+      final response = await DioClient().post(
+        'carts/add',
+        data: {'userId': userId, 'products': list},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(OrderModel.fromJson(response.data));
       } else {
-        return Left(FailureModel(message: 'Failed to load cart'));
+        return Left(FailureModel(message: 'Failed to add cart'));
       }
     } catch (e) {
       return Left(FailureModel(message: e.toString()));

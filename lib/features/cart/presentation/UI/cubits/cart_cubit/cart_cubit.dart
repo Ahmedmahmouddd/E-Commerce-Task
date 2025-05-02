@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_model.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/repository/cart_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -10,12 +13,19 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit(this.repository) : super(CartInitial());
 
-  Future<void> fetchCart(int id) async {
+  List<ProductEntity>? cartItems;
+
+  Future<void> addToCart(int id, List<CartSendModel> list) async {
     emit(CartLoading());
-    final result = await repository.getCart(id);
+    final result = await repository.addCart(id, list);
     result.fold(
-      (failure) => emit(CartError(failure.message)),
-      (order) => emit(CartLoaded(order)),
+      (failure) => {log('error: $failure'), emit(CartError(failure))},
+      (order) {
+        cartItems = cartItems ?? [];
+        cartItems?.add(order.products.first);
+        log('order: ${cartItems}');
+        emit(CartSuccessful(order));
+      },
     );
   }
 }

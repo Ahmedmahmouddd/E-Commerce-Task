@@ -1,4 +1,5 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/shared_preferences/shared_preferences.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/background_image.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +60,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class ProfileContainer extends StatelessWidget {
-  const ProfileContainer({
-    super.key,
-  });
+  const ProfileContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +72,12 @@ class ProfileContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white12),
       ),
-      child: const Row(
+      child: Row(
         children: [
           Icon(Icons.email, color: Colors.white),
           SizedBox(width: 12),
           Text(
-            "email@example.com",
+            CacheSaver.user?.email ?? '',
             style: AppTextStyles.font14BlackSemiBold,
           ),
         ],

@@ -1,9 +1,13 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/background_image.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/loading_indicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -15,6 +19,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<CartCubit>(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -31,16 +36,38 @@ class _CartScreenState extends State<CartScreen> {
                       style: AppTextStyles.font38WhiteBold,
                     ),
                     const SizedBox(height: 12),
-                    Expanded(
-                      child: ListView.separated(
-                        itemBuilder: (BuildContext context, int index) {
-                          return const CartContainer();
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(height: 12);
-                        },
-                        itemCount: 6,
-                      ),
+                    BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        if (state is CartLoading) {
+                          return const LoadingCircle();
+                        } else if (state is CartError) {
+                          return Center(child: Text(state.message));
+                        } else {
+                          return cubit.cartItems == null
+                              ? const Expanded(
+                                child: Center(child: Text("No items in cart")),
+                              )
+                              : Expanded(
+                                child: ListView.separated(
+                                  itemBuilder: (
+                                    BuildContext context,
+                                    int index,
+                                  ) {
+                                    return CartContainer(
+                                      productEntity: cubit.cartItems![index],
+                                    );
+                                  },
+                                  separatorBuilder: (
+                                    BuildContext context,
+                                    int index,
+                                  ) {
+                                    return const SizedBox(height: 12);
+                                  },
+                                  itemCount: cubit.cartItems!.length,
+                                ),
+                              );
+                        }
+                      },
                     ),
                   ],
                 ),
@@ -54,7 +81,9 @@ class _CartScreenState extends State<CartScreen> {
 }
 
 class CartContainer extends StatelessWidget {
-  const CartContainer({super.key});
+  const CartContainer({super.key, required this.productEntity});
+
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -83,33 +112,39 @@ class CartContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SvgPicture.asset(
-              "assets/icons/add.svg",
+            SizedBox(
               width: 80,
               height: 80,
-              fit: BoxFit.cover,
+              child: CachedNetworkImage(
+                imageUrl: productEntity.thumbnail,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(width: 12),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Product Name",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          productEntity.title,
+                          style: AppTextStyles.font16BlackSemiBold,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Text("Product description"),
-                Text("Product Price"),
-              ],
+                    ],
+                  ),
+                  Text(
+                    "\$ ${productEntity.price.toString()}",
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.font16BlackSemiBold,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(width: 12),
-            const Spacer(),
             Column(
               children: [
                 GestureDetector(onTap: () {}, child: const Icon(Icons.remove)),

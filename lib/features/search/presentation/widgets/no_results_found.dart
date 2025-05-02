@@ -2,10 +2,15 @@ import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class NoResultsFound extends StatelessWidget {
-  const NoResultsFound({super.key, this.message = 'No results found!'});
+class FillterWidget extends StatelessWidget {
+  const FillterWidget({
+    super.key,
+    this.message = 'No results found!',
+    this.icon,
+  });
 
   final String message;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,11 @@ class NoResultsFound extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.search_off, size: 80, color: AppColors.primary),
+            const Icon(
+              Icons.filter_vintage,
+              size: 80,
+              color: AppColors.primary,
+            ),
             const SizedBox(height: 8),
             Text(message, style: AppTextStyles.font20BlackBold),
           ],

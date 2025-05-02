@@ -20,6 +20,8 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
+  int selectedFilter = 0;
+
   Future<void> getSortedProducts(String sort) async {
     emit(SortedProductsLoading());
     final result = await productRepository.getSortedProducts(sort);

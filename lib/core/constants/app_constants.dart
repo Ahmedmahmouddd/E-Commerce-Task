@@ -13,6 +13,6 @@ class AppConstants {
   static const String addToCart = "Add To Cart";
   static const String priceLowestToHeighest = "?sortBy=price&order=asc";
   static const String priceHeighestToLowest = "?sortBy=price&order=desc";
-  static const String timeNewestToOldest = "?sortBy=time&order=asc";
-  static const String timeOldestToNewest = "?sortBy=time&order=desc";
+  static const String timeNewestToOldest = "?sortBy=title&order=desc";
+  static const String timeOldestToNewest = "?sortBy=title&order=asc";
 }

@@ -74,7 +74,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           return Center(child: Text(state.message));
                         } else if (state is SearchSuccess) {
                           if (state.products.isEmpty) {
-                            return const NoResultsFound();
+                            return const FillterWidget();
                           } else {
                             return Expanded(
                               child: MasonryGridView.builder(

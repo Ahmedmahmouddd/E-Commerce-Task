@@ -29,15 +29,19 @@ class RowOfOptions extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text(
-                  AppConstants.showAll,
-                  style: AppTextStyles.font20PrimaryBold,
+                child: const Row(
+                  children: [
+                    Text(
+                      AppConstants.showAll,
+                      style: AppTextStyles.font20PrimaryBold,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: AppColors.primary,
+                      size: 20,
+                    ),
+                  ],
                 ),
-              ),
-              const Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: AppColors.primary,
-                size: 20,
               ),
             ],
           ),

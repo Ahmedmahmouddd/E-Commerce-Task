@@ -2,6 +2,7 @@ import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/filter_bottom_sheet.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/loading_indicator.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/stagger_tile.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/search/presentation/widgets/no_results_found.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -78,7 +79,10 @@ class ShowAllScreen extends StatelessWidget {
                       } else if (state is SortedProductsLoading) {
                         return const Expanded(child: LoadingCircle());
                       } else {
-                        return const SizedBox();
+                        return const FillterWidget(
+                          icon: Icons.filter_vintage,
+                          message: 'Use the filter to View Products!',
+                        );
                       }
                     },
                   ),

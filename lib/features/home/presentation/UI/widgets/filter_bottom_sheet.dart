@@ -1,5 +1,6 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/home_cubit/home_cubit.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/filter_option_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,85 +17,84 @@ Future<dynamic> showFilterBottomSheet(BuildContext context) {
   );
 }
 
-class FilterBottomSheet extends StatelessWidget {
+class FilterBottomSheet extends StatefulWidget {
   const FilterBottomSheet({super.key});
 
   @override
+  State<FilterBottomSheet> createState() => _FilterBottomSheetState();
+}
+
+class _FilterBottomSheetState extends State<FilterBottomSheet> {
+  @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<HomeCubit>(context);
     return Container(
-      height: 200,
+      padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          const Text(
+            "Filter by Price",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 12),
-          const Text("Price"),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
+              FilterOptionButton(
+                name: "Highest to Lowest",
+                isSelected: cubit.selectedFilter == 1,
                 onTap: () {
-                  BlocProvider.of<HomeCubit>(
-                    context,
-                  ).getSortedProducts(AppConstants.priceHeighestToLowest);
+                  cubit.selectedFilter = 1;
+                  cubit.getSortedProducts(AppConstants.priceHeighestToLowest);
+                  Navigator.pop(context);
                 },
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const Text("Highest To Lowest"),
-                ),
               ),
-              const SizedBox(width: 12),
-              GestureDetector(
+              FilterOptionButton(
+                name: "Lowest to Highest",
+                isSelected: cubit.selectedFilter == 2,
                 onTap: () {
-                  BlocProvider.of<HomeCubit>(
-                    context,
-                  ).getSortedProducts(AppConstants.priceLowestToHeighest);
+                  cubit.selectedFilter = 2;
+                  cubit.getSortedProducts(AppConstants.priceLowestToHeighest);
+                  Navigator.pop(context);
                 },
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const Text("Lowest To Highest"),
-                ),
               ),
             ],
           ),
           const SizedBox(height: 24),
-          const Text("Date"),
+          const Text(
+            "Filter by Date",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: const Text("Oldest To Newest"),
+              FilterOptionButton(
+                name: "Oldest to Newest",
+                isSelected: cubit.selectedFilter == 3,
+                onTap: () {
+                  cubit.selectedFilter = 3;
+                  cubit.getSortedProducts(AppConstants.timeOldestToNewest);
+                  Navigator.pop(context);
+                },
               ),
-              const SizedBox(width: 12),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: const Text("Newest To Oldest"),
+              FilterOptionButton(
+                name: "Newest to Oldest",
+                isSelected: cubit.selectedFilter == 4,
+                onTap: () {
+                  cubit.selectedFilter = 4;
+                  cubit.getSortedProducts(AppConstants.timeNewestToOldest);
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),
+          const SizedBox(height: 24),
         ],
       ),
     );

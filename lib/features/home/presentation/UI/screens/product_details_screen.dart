@@ -6,6 +6,7 @@ import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_m
 import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/favorites_positioned_widget.dart';
+import 'package:ahmed_mahmoud_flutter_task/main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -257,7 +258,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 decoration: const BoxDecoration(color: Colors.transparent),
                 child: ElevatedButton(
                   onPressed: () {
-                    cartCubit.addToCart(1, [
+                    cartCubit.addToCart(user?.id ?? 1, [
                       CartSendModel(id: widget.product.id, quantity: 1),
                     ]);
                   },

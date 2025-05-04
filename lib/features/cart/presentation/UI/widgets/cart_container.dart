@@ -3,6 +3,7 @@ import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_model.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
+import 'package:ahmed_mahmoud_flutter_task/main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ class CartContainer extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (context) {
-              cubit.updateCart(1, [
+              cubit.updateCart(user?.id ?? 1, [
                 CartSendModel(
                   id: productEntity.id,
                   quantity: productEntity.quantity - 1,
@@ -107,7 +108,7 @@ class CartContainer extends StatelessWidget {
                           cubit.orderEntity!.products.remove(productEntity);
                           cubit.updateState();
                         } else {
-                          cubit.updateCart(1, [
+                          cubit.updateCart(user?.id ?? 1, [
                             CartSendModel(
                               id: productEntity.id,
                               quantity: productEntity.quantity - 1,
@@ -122,7 +123,7 @@ class CartContainer extends StatelessWidget {
                     Text(productEntity.quantity.toString()),
                     GestureDetector(
                       onTap: () {
-                        cubit.updateCart(1, [
+                        cubit.updateCart(user?.id ?? 1, [
                           CartSendModel(
                             id: productEntity.id,
                             quantity: productEntity.quantity + 1,

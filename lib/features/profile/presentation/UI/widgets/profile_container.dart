@@ -1,10 +1,17 @@
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
+import 'package:ahmed_mahmoud_flutter_task/main.dart';
 import 'package:flutter/material.dart';
 
-class ProfileContainer extends StatelessWidget {
-  const ProfileContainer({super.key, required this.email});
-  final String email;
+class ProfileContainer extends StatefulWidget {
+  const ProfileContainer({super.key});
 
+  @override
+  State<ProfileContainer> createState() => _ProfileContainerState();
+}
+
+
+
+class _ProfileContainerState extends State<ProfileContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,11 +22,14 @@ class ProfileContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white12),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          Icon(Icons.email, color: Colors.white),
-          SizedBox(width: 12),
-          Text("emilys", style: AppTextStyles.font14BlackSemiBold),
+          const Icon(Icons.email, color: Colors.white),
+          const SizedBox(width: 12),
+          Text(
+            user?.email ?? 'no email available',
+            style: AppTextStyles.font14BlackSemiBold,
+          ),
         ],
       ),
     );

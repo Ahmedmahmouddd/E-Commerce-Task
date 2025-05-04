@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   // Email Container
-                  const ProfileContainer(email: "emilys"),
+                   const ProfileContainer(),
                   const SizedBox(height: 16),
                 ],
               ),

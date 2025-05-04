@@ -3,6 +3,16 @@
 A Flutter app with API integration that enables users to log in, browse products, search, filter, manage their cart, and complete checkout. It uses BLoC for state management and stores user data securely with SharedPreferences. Key features include real-time search, product details, and smooth cart management with API updates.
 
 ## 📸 Screenshots of the App
+| *Screen*                             | *Screenshot*                                    |
+|--------------------------------------|--------------------------------------------------|
+| *Cart Page*                          | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20cart.png" width="170"/>     |
+| *Check Out*                         | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20check_out.png" width="170"/>     |
+| *Filter*               | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20filter.png" width="170"/> |
+| *Home Screen*    | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20home.png" width="170"/> |
+| *Login Screen*         | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20login.png" width="170"/> |
+| *Product Details*                 | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20product_details.png" width="170"/> |
+| *Search Screen*           | <img src="https://github.com/Ahmedmahmouddd/E-Commerce-Task/blob/main/screenShots/Simulator%20Screenshot%20-%20search.png" width="170"/> |
+
 
 
 ## Features

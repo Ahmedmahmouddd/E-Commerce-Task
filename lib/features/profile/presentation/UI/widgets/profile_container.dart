@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/main.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,6 @@ class ProfileContainer extends StatefulWidget {
   @override
   State<ProfileContainer> createState() => _ProfileContainerState();
 }
-
-
 
 class _ProfileContainerState extends State<ProfileContainer> {
   @override
@@ -27,7 +26,7 @@ class _ProfileContainerState extends State<ProfileContainer> {
           const Icon(Icons.email, color: Colors.white),
           const SizedBox(width: 12),
           Text(
-            user?.email ?? 'no email available',
+            user?.email ?? AppConstants.userEmail,
             style: AppTextStyles.font14BlackSemiBold,
           ),
         ],

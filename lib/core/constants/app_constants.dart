@@ -52,4 +52,5 @@ class AppConstants {
   static const String forY = "For ";
   static const String you = "You";
   static const String userFiltersToViewProducts = "Use the filter to View Products!";
+  static const String userEmail = 'emily.johnson@x.dummyjson.com';
 }

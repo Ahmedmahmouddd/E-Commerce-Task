@@ -41,20 +41,16 @@ class ProductsResponseModel {
   final int? skip;
   final int? limit;
 
-  ProductsResponseModel({
-    this.products,
-    this.total,
-    this.skip,
-    this.limit,
-  });
+  ProductsResponseModel({this.products, this.total, this.skip, this.limit});
 
   factory ProductsResponseModel.fromJson(Map<String, dynamic> json) {
     return ProductsResponseModel(
-      products: json[JsonKeys.products] != null
-          ? (json[JsonKeys.products] as List<dynamic>)
-              .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
-              .toList()
-          : null,
+      products:
+          json[JsonKeys.products] != null
+              ? (json[JsonKeys.products] as List<dynamic>)
+                  .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+                  .toList()
+              : null,
       total: json[JsonKeys.total] as int?,
       skip: json[JsonKeys.skip] as int?,
       limit: json[JsonKeys.limit] as int?,
@@ -118,29 +114,41 @@ class ProductModel {
       description: json[JsonKeys.description],
       category: json[JsonKeys.category],
       price: (json[JsonKeys.price] as num?)?.toDouble(),
-      discountPercentage: (json[JsonKeys.discountPercentage] as num?)?.toDouble(),
+      discountPercentage:
+          (json[JsonKeys.discountPercentage] as num?)?.toDouble(),
       rating: (json[JsonKeys.rating] as num?)?.toDouble(),
       stock: json[JsonKeys.stock],
-      tags: json[JsonKeys.tags] != null ? List<String>.from(json[JsonKeys.tags]) : null,
+      tags:
+          json[JsonKeys.tags] != null
+              ? List<String>.from(json[JsonKeys.tags])
+              : null,
       brand: json[JsonKeys.brand],
       sku: json[JsonKeys.sku],
       weight: (json[JsonKeys.weight] as num?)?.toDouble(),
-      dimensions: json[JsonKeys.dimensions] != null
-          ? DimensionsModel.fromJson(json[JsonKeys.dimensions])
-          : null,
+      dimensions:
+          json[JsonKeys.dimensions] != null
+              ? DimensionsModel.fromJson(json[JsonKeys.dimensions])
+              : null,
       warrantyInformation: json[JsonKeys.warrantyInformation],
       shippingInformation: json[JsonKeys.shippingInformation],
       availabilityStatus: json[JsonKeys.availabilityStatus],
-      reviews: json[JsonKeys.reviews] != null
-          ? (json[JsonKeys.reviews] as List)
-              .map((e) => ReviewModel.fromJson(e))
-              .toList()
-          : null,
+      reviews:
+          json[JsonKeys.reviews] != null
+              ? (json[JsonKeys.reviews] as List)
+                  .map((e) => ReviewModel.fromJson(e))
+                  .toList()
+              : null,
       returnPolicy: json[JsonKeys.returnPolicy],
       minimumOrderQuantity: json[JsonKeys.minimumOrderQuantity],
-      meta: json[JsonKeys.meta] != null ? MetaModel.fromJson(json[JsonKeys.meta]) : null,
+      meta:
+          json[JsonKeys.meta] != null
+              ? MetaModel.fromJson(json[JsonKeys.meta])
+              : null,
       thumbnail: json[JsonKeys.thumbnail],
-      images: json[JsonKeys.images] != null ? List<String>.from(json[JsonKeys.images]) : null,
+      images:
+          json[JsonKeys.images] != null
+              ? List<String>.from(json[JsonKeys.images])
+              : null,
     );
   }
 
@@ -158,19 +166,23 @@ class ProductModel {
       brand: brand ?? '',
       sku: sku ?? '',
       weight: weight ?? 0.0,
-      dimensions: dimensions?.toEntity() ?? DimensionsEntity(width: 0.0, height: 0.0, depth: 0.0),
+      dimensions:
+          dimensions?.toEntity() ??
+          DimensionsEntity(width: 0.0, height: 0.0, depth: 0.0),
       warrantyInformation: warrantyInformation ?? '',
       shippingInformation: shippingInformation ?? '',
       availabilityStatus: availabilityStatus ?? '',
       reviews: reviews?.map((e) => e.toEntity()).toList() ?? [],
       returnPolicy: returnPolicy ?? '',
       minimumOrderQuantity: minimumOrderQuantity ?? 0,
-      meta: meta?.toEntity() ?? MetaEntity(
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-        barcode: '',
-        qrCode: '',
-      ),
+      meta:
+          meta?.toEntity() ??
+          MetaEntity(
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+            barcode: '',
+            qrCode: '',
+          ),
       thumbnail: thumbnail ?? '',
       images: images ?? [],
     );

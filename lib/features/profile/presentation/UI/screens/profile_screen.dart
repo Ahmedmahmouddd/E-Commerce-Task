@@ -1,11 +1,11 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/shared_preferences/shared_preferences.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/screens/signin_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/background_image.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/profile/presentation/UI/widgets/profile_container.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -37,16 +37,14 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         child: GestureDetector(
                           onTap: () async {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.remove('email');
+                            await CacheSaver.clearAllData();
                             if (context.mounted) {
                               Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SigninScreen(),
-                              ),
-                              (route) => false,
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SigninScreen(),
+                                ),
+                                (route) => false,
                               );
                             }
                           },

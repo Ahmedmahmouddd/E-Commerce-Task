@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:ahmed_mahmoud_flutter_task/core/shared_preferences/shared_preferences.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/dependency_injection.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/view/cubits/signin_cubit/signin_cubit.dart';
@@ -11,11 +11,17 @@ import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+bool? userloggedIn;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheSaver.init();
   init();
+
+  userloggedIn = await CacheSaver.getUser() == null ? false : true;
+  log('userloggedIn: $userloggedIn');
+
   runApp(const MyApp());
 }
 
@@ -27,14 +33,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late String? email;
-  Future getValidationData() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    var obtainerEmail = sharedPreferences.getString('email');
-    email = obtainerEmail;
-    log('email: $email');
-  }
+  // late String? email;
+  // Future getValidationData() async {
+  //   final SharedPreferences sharedPreferences =
+  //       await SharedPreferences.getInstance();
+  //   var obtainerEmail = sharedPreferences.getString('email');
+  //   email = obtainerEmail;
+  //   log('email: $email');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,21 +60,10 @@ class _MyAppState extends State<MyApp> {
           ),
           BlocProvider(create: (context) => sl<CartCubit>()),
         ],
-        child: FutureBuilder(
-          future: getValidationData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return MaterialApp(
-                theme: appTheme,
-                debugShowCheckedModeBanner: false,
-                home:
-                    email != null && email!.isNotEmpty
-                        ? const NavBarHome()
-                        : const SigninScreen(),
-              );
-            }
-            return const CircularProgressIndicator();
-          },
+        child: MaterialApp(
+          theme: appTheme,
+          debugShowCheckedModeBanner: false,
+          home: userloggedIn! ? const NavBarHome() : const SigninScreen(),
         ),
       ),
     );

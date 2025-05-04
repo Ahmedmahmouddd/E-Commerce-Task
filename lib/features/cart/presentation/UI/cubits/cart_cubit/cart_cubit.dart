@@ -13,17 +13,51 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit(this.repository) : super(CartInitial());
 
-  List<ProductEntity>? cartItems;
+  // List<ProductEntity>? cartItems;
+  OrderEntity? orderEntity;
+
+  void updateState() {
+    emit(CartInitial());
+  }
 
   Future<void> addToCart(int id, List<CartSendModel> list) async {
     emit(CartLoading());
-    final result = await repository.addCart(id, list);
+
+    final result = await repository.addToCart(id, list);
+
     result.fold(
-      (failure) => {log('error: $failure'), emit(CartError(failure))},
+      (failure) {
+        log('error: $failure');
+        emit(CartError(failure));
+      },
       (order) {
-        cartItems = cartItems ?? [];
-        cartItems?.add(order.products.first);
-        log('order: ${cartItems}');
+        orderEntity = orderEntity ?? order;
+        final newProduct = order.products.first;
+        final alreadyExists = orderEntity!.products.any(
+          (item) => item.id == newProduct.id,
+        );
+
+        if (alreadyExists) {
+          emit(CartAlreadyExist());
+        } else {
+          orderEntity!.products.add(newProduct);
+          emit(CartSuccessful(order));
+        }
+      },
+    );
+  }
+
+  Future<void> updateCart(int cartId, List<CartSendModel> products) async {
+    emit(CartLoading());
+
+    final result = await repository.updateCart(cartId, products);
+
+    result.fold(
+      (failure) {
+        log('Update error: $failure');
+        emit(CartError(failure));
+      },
+      (order) {
         emit(CartSuccessful(order));
       },
     );

@@ -11,11 +11,22 @@ class CartRepositoryImpl implements CartRepository {
   CartRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<String, OrderEntity>> addCart(
+  Future<Either<String, OrderEntity>> addToCart(
     int userId,
     List<CartSendModel> list,
   ) async {
     final result = await dataSource.addCart(userId, list);
+    return result.fold(
+      (failure) => Left(failure.message),
+      (orderModel) => Right(orderModel.toEntity()),
+    );
+  }
+  
+  @override
+  Future<Either<String, OrderEntity>> updateCart(int cartId,
+    List<CartSendModel> list,
+  ) async {
+    final result = await dataSource.updateCart(cartId, list);
     return result.fold(
       (failure) => Left(failure.message),
       (orderModel) => Right(orderModel.toEntity()),

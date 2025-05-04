@@ -10,6 +10,10 @@ abstract class CartRemoteDataSource {
     int userId,
     List<CartSendModel> list,
   );
+  Future<Either<FailureModel, OrderModel>> updateCart(
+    int userId,
+    List<CartSendModel> list,
+  );
 }
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
@@ -32,6 +36,27 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
         return Right(OrderModel.fromJson(response.data));
       } else {
         return Left(FailureModel(message: 'Failed to add cart'));
+      }
+    } catch (e) {
+      return Left(FailureModel(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FailureModel, OrderModel>> updateCart(
+    int cartId,
+    List<CartSendModel> list,
+  ) async {
+    try {
+      final response = await DioClient().put(
+        'carts/$cartId',
+        data: {'merge': true, 'products': list},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(OrderModel.fromJson(response.data));
+      } else {
+        return Left(FailureModel(message: response.data['message']));
       }
     } catch (e) {
       return Left(FailureModel(message: e.toString()));

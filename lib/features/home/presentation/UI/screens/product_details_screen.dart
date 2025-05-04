@@ -32,7 +32,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final images = widget.product.images;
-
+    final cartCubit = BlocProvider.of<CartCubit>(context);
     final size = MediaQuery.of(context).size;
     final double originalPrice =
         widget.product.price / (1 - (widget.product.discountPercentage / 100));
@@ -249,29 +249,40 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ],
           ),
         ),
-
         bottomNavigationBar: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<CartCubit>(context).addToCart(1, [
-                  CartSendModel(id: widget.product.id, quantity: 1),
-                ]);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+          child: BlocBuilder<CartCubit, CartState>(
+            builder: (context, state) {
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: const BoxDecoration(color: Colors.transparent),
+                child: ElevatedButton(
+                  onPressed: () {
+                    cartCubit.addToCart(1, [
+                      CartSendModel(id: widget.product.id, quantity: 1),
+                    ]);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    (cartCubit.orderEntity?.products != null &&
+                            cartCubit.orderEntity!.products.any(
+                              (item) => item.id == widget.product.id,
+                            ))
+                        ? "Item Added To Cart"
+                        : AppConstants.addToCart,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.white,
+                    ),
+                  ),
                 ),
-              ),
-              child: const Text(
-                AppConstants.addToCart,
-                style: TextStyle(fontSize: 16, color: AppColors.white),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ),

@@ -3,8 +3,13 @@ import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_en
 import 'package:dartz/dartz.dart';
 
 abstract class CartRepository {
-  Future<Either<String, OrderEntity>> addCart(
+  Future<Either<String, OrderEntity>> addToCart(
     int userId,
+    List<CartSendModel> list,
+  );
+
+  Future<Either<String, OrderEntity>> updateCart(
+    int cartId,
     List<CartSendModel> list,
   );
 }

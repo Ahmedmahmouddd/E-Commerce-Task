@@ -15,4 +15,6 @@ class AppConstants {
   static const String priceHeighestToLowest = "?sortBy=price&order=desc";
   static const String timeNewestToOldest = "?sortBy=title&order=desc";
   static const String timeOldestToNewest = "?sortBy=title&order=asc";
+  static const String checkOutPage = "Check Out";
+
 }

@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 32),
 
                   // Email Container
-                  ProfileContainer(),
+                  const ProfileContainer(),
                   const SizedBox(height: 16),
 
                   // Favorites Container

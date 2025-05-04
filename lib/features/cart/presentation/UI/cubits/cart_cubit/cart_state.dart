@@ -7,6 +7,8 @@ class CartInitial extends CartState {}
 
 class CartLoading extends CartState {}
 
+class CartAlreadyExist extends CartState {}
+
 class CartSuccessful extends CartState {
   final OrderEntity cart;
   CartSuccessful(this.cart);

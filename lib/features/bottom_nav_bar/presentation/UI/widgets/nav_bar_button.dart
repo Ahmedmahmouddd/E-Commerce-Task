@@ -11,7 +11,6 @@ class BottomNavBarButton extends StatelessWidget {
   });
   final Function() onTap;
   final String selectedIcon;
-
   final bool isSelected;
 
   @override
@@ -21,9 +20,13 @@ class BottomNavBarButton extends StatelessWidget {
       child: SizedBox(
         height: 54,
         child: Center(
-          child: SvgPicture.asset( selectedIcon,
+          child: SvgPicture.asset(
+            selectedIcon,
             height: 24,
-            colorFilter:  ColorFilter.mode(isSelected ? AppColors.primary : AppColors.white, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              isSelected ? AppColors.primary : AppColors.white,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       ),

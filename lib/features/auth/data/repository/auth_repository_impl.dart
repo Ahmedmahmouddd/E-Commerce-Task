@@ -3,6 +3,10 @@ import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/entity/user_enti
 import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
+// This file implements the AuthRepository interface, acting as a bridge between the
+// domain layer and the remote data source. It delegates the login process to the
+// remote data source and maps the result into a UserEntity or error message.
+
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 

@@ -9,6 +9,12 @@ import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// CartScreen: Displays cart items and handles checkout.
+// Uses CartCubit to manage cart state (loading, error, and products).
+// BlocBuilder listens for state changes and updates the UI accordingly.
+// Cart items are shown in a list, with a checkout button visible when products exist.
+
+
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
@@ -77,7 +83,10 @@ class _CartScreenState extends State<CartScreen> {
                               return cubit.orderEntity?.products == null
                                   ? const Expanded(
                                     child: Center(
-                                      child: Text("No items in cart"),
+                                      child: Text(
+                                        AppConstants.noItemsInCart,
+                                        style: AppTextStyles.font20BlackBold,
+                                      ),
                                     ),
                                   )
                                   : Expanded(

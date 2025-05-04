@@ -1,6 +1,7 @@
 import 'package:ahmed_mahmoud_flutter_task/core/shared_preferences/shared_preferences.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/dependency_injection.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/auth/view/screens/signin_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/bottom_nav_bar/presentation/UI/cubit/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/bottom_nav_bar/presentation/UI/screens/bottom_nav_bar_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           theme: appTheme,
           debugShowCheckedModeBanner: false,
-          home: const NavBarHome(),
+          home: const SigninScreen(),
         ),
       ),
     );

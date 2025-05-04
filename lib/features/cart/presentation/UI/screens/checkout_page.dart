@@ -1,4 +1,7 @@
+import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/widgets/snack_bar.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +22,10 @@ class CheckoutPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: AppColors.grey200,
       appBar: AppBar(
         title: const Text('Checkout'),
-        backgroundColor: Colors.grey[700],
+        backgroundColor: AppColors.grey700,
         elevation: 0,
       ),
       body: Padding(
@@ -72,14 +75,14 @@ class CheckoutPage extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        decoration: BoxDecoration(
-          color: Colors.grey[100],
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        decoration: const BoxDecoration(
+          color: AppColors.grey200,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade400,
+              color: AppColors.darkWhite,
               blurRadius: 6,
-              offset: const Offset(0, -2),
+              offset: Offset(0, -2),
             ),
           ],
         ),
@@ -89,35 +92,31 @@ class CheckoutPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Total:', style: TextStyle(fontSize: 16)),
+                const Text(AppConstants.total, style: TextStyle(fontSize: 16)),
                 Text(
                   '\$${calculateTotal(products).toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.font16BlackSemiBold,
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Order confirmed!')),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[700],
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            SafeArea(
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    showCustomSnackBar(context, AppConstants.orderConfirmed);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Confirm Order',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  child: const Text(
+                    AppConstants.confirmOrder,
+                    style: AppTextStyles.font16BlackSemiBold,
+                  ),
                 ),
               ),
             ),

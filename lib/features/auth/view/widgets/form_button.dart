@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           overlayColor: AppColors.grey,
-          shadowColor: Colors.transparent,
+          shadowColor: AppColors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -37,11 +37,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child:
             loading
-                ? const SizedBox(
-                  width: 25,
-                  height: 50,
-                  child: LoadingCircle(),
-                )
+                ? const SizedBox(width: 25, height: 50, child: LoadingCircle())
                 : SizedBox(
                   child: Text(text, style: AppTextStyles.font16BlackSemiBold),
                 ),

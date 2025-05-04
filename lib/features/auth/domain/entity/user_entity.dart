@@ -1,5 +1,7 @@
-
 import 'package:ahmed_mahmoud_flutter_task/features/auth/data/models/user_model.dart';
+
+// This file defines the UserEntity class, which represents the user data in the domain layer.
+// It also provides a method to convert the entity to a UserModel for data layer interaction.
 
 class UserEntity {
   final int id;

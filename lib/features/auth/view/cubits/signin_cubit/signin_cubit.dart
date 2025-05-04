@@ -3,15 +3,17 @@ import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/entity/user_enti
 import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
 part 'signin_state.dart';
+
+// This file defines the SigninCubit class, which is responsible for handling the state of the user sign-in process.
+// It uses the AuthRepository to login the user, and manages various states such as loading, success, and failure using the BLoC pattern.
+// The SigninCubit also caches the user data once the login is successful.
 
 class SigninCubit extends Cubit<SigninState> {
   final AuthRepository authRepository;
 
   SigninCubit(this.authRepository) : super(SigninInitial());
 
-  //  UserEntity? currentUser;
   Future<void> loginUser(String username, String password) async {
     emit(SigninLoading());
 

@@ -5,6 +5,11 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/data/models/user_model.dart';
 
+// This file defines the remote data source for user authentication,
+// handling login functionality by sending a POST request to the login API.
+// It uses Dio for networking and wraps responses in an Either type,
+// returning either a UserModel on success or a FailureModel on failure.
+
 abstract class AuthRemoteDataSource {
   Future<Either<FailureModel, UserModel>> loginUser(
     String username,
@@ -25,9 +30,9 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       final response = await DioClient().post(
         AppConstants.apiLogin,
         data: {
-          'username': username,
-          'password': password,
-          'expiresInMins': 30, // optional
+          AppConstants.userName: username,
+          AppConstants.password: password,
+          AppConstants.expiresInMins: 30, // optional
         },
       );
 
@@ -40,7 +45,10 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       }
     } on DioException catch (e) {
       final failure = FailureModel(
-        message: e.response?.data["message"] ?? e.message ?? "Unknown error",
+        message:
+            e.response?.data[AppConstants.message] ??
+            e.message ??
+            AppConstants.unKnownError,
       );
       return Left(failure);
     }

@@ -1,5 +1,9 @@
 import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/entity/user_entity.dart';
 
+// This file defines the UserModel class, which represents the user data structure
+// and handles JSON serialization/deserialization as well as conversion to a UserEntity.
+// It centralizes JSON keys as static constants for maintainability and consistency.
+
 class UserModel {
   final int id;
   final String username;
@@ -23,31 +27,41 @@ class UserModel {
     required this.refreshToken,
   });
 
+  static const String idKey = 'id';
+  static const String usernameKey = 'username';
+  static const String emailKey = 'email';
+  static const String firstNameKey = 'firstName';
+  static const String lastNameKey = 'lastName';
+  static const String genderKey = 'gender';
+  static const String imageKey = 'image';
+  static const String accessTokenKey = 'accessToken';
+  static const String refreshTokenKey = 'refreshToken';
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'],
-      username: json['username'],
-      email: json['email'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      gender: json['gender'],
-      image: json['image'],
-      accessToken: json['accessToken'],
-      refreshToken: json['refreshToken'],
+      id: json[idKey],
+      username: json[usernameKey],
+      email: json[emailKey],
+      firstName: json[firstNameKey],
+      lastName: json[lastNameKey],
+      gender: json[genderKey],
+      image: json[imageKey],
+      accessToken: json[accessTokenKey],
+      refreshToken: json[refreshTokenKey],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'username': username,
-      'email': email,
-      'firstName': firstName,
-      'lastName': lastName,
-      'gender': gender,
-      'image': image,
-      'accessToken': accessToken,
-      'refreshToken': refreshToken,
+      idKey: id,
+      usernameKey: username,
+      emailKey: email,
+      firstNameKey: firstName,
+      lastNameKey: lastName,
+      genderKey: gender,
+      imageKey: image,
+      accessTokenKey: accessToken,
+      refreshTokenKey: refreshToken,
     };
   }
 

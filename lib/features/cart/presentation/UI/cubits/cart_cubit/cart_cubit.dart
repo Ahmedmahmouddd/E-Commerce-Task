@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_model.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/repository/cart_repository.dart';
@@ -27,7 +25,6 @@ class CartCubit extends Cubit<CartState> {
 
     result.fold(
       (failure) {
-        log('error: $failure');
         emit(CartError(failure));
       },
       (order) {
@@ -54,7 +51,6 @@ class CartCubit extends Cubit<CartState> {
 
     result.fold(
       (failure) {
-        log('Update error: $failure');
         emit(CartError(failure));
       },
       (order) {

@@ -1,7 +1,7 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
-import 'package:ahmed_mahmoud_flutter_task/features/auth/view/widgets/snack_bar.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/widgets/snack_bar.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_model.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';

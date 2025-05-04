@@ -9,6 +9,18 @@ import 'package:ahmed_mahmoud_flutter_task/features/search/presentation/UI/scree
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// NavBarHome is the main screen with a bottom navigation bar that allows users to switch between different pages.
+// It uses BlocBuilder to manage the state of the current selected page from the BottomNavBarCubit.
+
+// The pageList contains all the pages that can be accessed from the navigation bar:
+// - HomeScreen
+// - SearchScreen (wrapped in a BlocProvider for SearchCubit)
+// - CartScreen
+// - ProfileScreen
+
+// BlocBuilder listens to the BottomNavBarCubit to determine the currently selected page and rebuild the UI accordingly.
+// The BottomNavBar widget is responsible for rendering the navigation bar and passing the correct cubit to it.
+
 class NavBarHome extends StatelessWidget {
   const NavBarHome({super.key});
 
@@ -18,7 +30,6 @@ class NavBarHome extends StatelessWidget {
       create: (context) => sl<SearchCubit>(),
       child: const SearchScreen(),
     ),
-    const HomeScreen(),
     const CartScreen(),
     const ProfileScreen(),
   ];
@@ -36,5 +47,3 @@ class NavBarHome extends StatelessWidget {
     );
   }
 }
-
-//

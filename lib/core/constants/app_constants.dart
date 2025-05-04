@@ -1,6 +1,8 @@
 class AppConstants {
   static const String apiBaseUrl = 'https://dummyjson.com/';
   static const String apiLogin = 'auth/login';
+  static const String apiAddCart = 'carts/add';
+  static const String apiCarts = 'carts/';
   static const String apiPproducts = 'products';
   static const String apiCategories = 'products/category/';
   static const String apiSearch = "products/search";
@@ -16,5 +18,23 @@ class AppConstants {
   static const String timeNewestToOldest = "?sortBy=title&order=desc";
   static const String timeOldestToNewest = "?sortBy=title&order=asc";
   static const String checkOutPage = "Check Out";
-
+  static const String userName = 'username';
+  static const String password = 'password';
+  static const String expiresInMins = 'expiresInMins';
+  static const String message = "message";
+  static const String noItemsInCart = "No items in cart";
+  static const String unKnownError = "Unknown error";
+  static const String loginSuccess = "Login Successful";
+  static const String signIn = "Sign in";
+  static const String email = "Email";
+  static const String passwordCapital = "Password";
+  static const String enterEmail = "Please enter an email";
+  static const String enterPassword = "Please enter a password";
+  static const String userId = 'userId';
+  static const String products = 'products';
+  static const String failedToAddToCart = 'Failed to add to cart';
+  static const String merge = 'merge';
+  static const String total = "Total: ";
+  static const String confirmOrder = 'Confirm Order';
+  static const String orderConfirmed = "Order Confirmed";
 }

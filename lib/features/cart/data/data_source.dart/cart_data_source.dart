@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/models/failure_model.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/network/dio_client.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_model.dart';
@@ -28,14 +29,14 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   ) async {
     try {
       final response = await DioClient().post(
-        'carts/add',
-        data: {'userId': userId, 'products': list},
+        AppConstants.apiAddCart,
+        data: {AppConstants.userId: userId, AppConstants.products: list},
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(OrderModel.fromJson(response.data));
       } else {
-        return Left(FailureModel(message: 'Failed to add cart'));
+        return Left(FailureModel(message: AppConstants.failedToAddToCart));
       }
     } catch (e) {
       return Left(FailureModel(message: e.toString()));
@@ -49,14 +50,15 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   ) async {
     try {
       final response = await DioClient().put(
-        'carts/$cartId',
-        data: {'merge': true, 'products': list},
+        '${AppConstants.apiCarts}$cartId',
+
+        data: {AppConstants.merge: true, AppConstants.products: list},
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(OrderModel.fromJson(response.data));
       } else {
-        return Left(FailureModel(message: response.data['message']));
+        return Left(FailureModel(message: response.data[AppConstants.message]));
       }
     } catch (e) {
       return Left(FailureModel(message: e.toString()));

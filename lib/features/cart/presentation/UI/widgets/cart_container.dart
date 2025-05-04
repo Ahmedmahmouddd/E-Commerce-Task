@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/data/models/cart_send_model.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
@@ -6,6 +7,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+
+// CartContainer: Displays individual product in the cart with quantity management.
+// Uses CachedNetworkImage to display product image and CartCubit to manage cart updates.
+// Includes a slidable action to remove items and buttons to increase/decrease quantity.
+// Updates cart state and UI when product quantity is changed or removed.
 
 // ignore: must_be_immutable
 class CartContainer extends StatelessWidget {
@@ -37,8 +43,8 @@ class CartContainer extends StatelessWidget {
               topRight: Radius.circular(12),
               bottomRight: Radius.circular(12),
             ),
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
+            backgroundColor: AppColors.red,
+            foregroundColor: AppColors.white,
             icon: Icons.delete,
           ),
         ],
@@ -46,7 +52,7 @@ class CartContainer extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(

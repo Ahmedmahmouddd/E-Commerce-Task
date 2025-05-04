@@ -9,6 +9,14 @@ class OrderModel {
   final int totalProducts;
   final int totalQuantity;
 
+  static const String idKey = 'id';
+  static const String productsKey = 'products';
+  static const String totalKey = 'total';
+  static const String discountedTotalKey = 'discountedTotal';
+  static const String userIdKey = 'userId';
+  static const String totalProductsKey = 'totalProducts';
+  static const String totalQuantityKey = 'totalQuantity';
+
   OrderModel({
     required this.id,
     required this.products,
@@ -21,28 +29,28 @@ class OrderModel {
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
-      id: json['id'],
+      id: json[idKey],
       products:
-          (json['products'] as List)
+          (json[productsKey] as List)
               .map((p) => ProductModel.fromJson(p))
               .toList(),
-      total: (json['total'] as num).toDouble(),
-      discountedTotal: (json['discountedTotal'] as num).toDouble(),
-      userId: json['userId'],
-      totalProducts: json['totalProducts'],
-      totalQuantity: json['totalQuantity'],
+      total: (json[totalKey] as num).toDouble(),
+      discountedTotal: (json[discountedTotalKey] as num).toDouble(),
+      userId: json[userIdKey],
+      totalProducts: json[totalProductsKey],
+      totalQuantity: json[totalQuantityKey],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'products': products.map((p) => p.toJson()).toList(),
-      'total': total,
-      'discountedTotal': discountedTotal,
-      'userId': userId,
-      'totalProducts': totalProducts,
-      'totalQuantity': totalQuantity,
+      idKey: id,
+      productsKey: products.map((p) => p.toJson()).toList(),
+      totalKey: total,
+      discountedTotalKey: discountedTotal,
+      userIdKey: userId,
+      totalProductsKey: totalProducts,
+      totalQuantityKey: totalQuantity,
     };
   }
 }
@@ -57,6 +65,15 @@ class ProductModel {
   final double discountedTotal;
   final String thumbnail;
 
+  static const String idKey = 'id';
+  static const String titleKey = 'title';
+  static const String priceKey = 'price';
+  static const String quantityKey = 'quantity';
+  static const String totalKey = 'total';
+  static const String discountPercentageKey = 'discountPercentage';
+  static const String discountedTotalKey = 'discountedTotal';
+  static const String thumbnailKey = 'thumbnail';
+
   ProductModel({
     required this.id,
     required this.title,
@@ -70,30 +87,30 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      id: json['id'],
-      title: json['title'],
-      price: (json['price'] as num).toDouble(),
-      quantity: json['quantity'],
-      total: (json['total'] as num).toDouble(),
-      discountPercentage: (json['discountPercentage'] as num).toDouble(),
+      id: json[idKey],
+      title: json[titleKey],
+      price: (json[priceKey] as num).toDouble(),
+      quantity: json[quantityKey],
+      total: (json[totalKey] as num).toDouble(),
+      discountPercentage: (json[discountPercentageKey] as num?)?.toDouble(),
       discountedTotal:
-          json['discountedTotal'] != null
-              ? (json['discountedTotal'] as num).toDouble()
+          json[discountedTotalKey] != null
+              ? (json[discountedTotalKey] as num).toDouble()
               : 0.0,
-      thumbnail: json['thumbnail'],
+      thumbnail: json[thumbnailKey],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'title': title,
-      'price': price,
-      'quantity': quantity,
-      'total': total,
-      'discountPercentage': discountPercentage,
-      'discountedTotal': discountedTotal,
-      'thumbnail': thumbnail,
+      idKey: id,
+      titleKey: title,
+      priceKey: price,
+      quantityKey: quantity,
+      totalKey: total,
+      discountPercentageKey: discountPercentage,
+      discountedTotalKey: discountedTotal,
+      thumbnailKey: thumbnail,
     };
   }
 }

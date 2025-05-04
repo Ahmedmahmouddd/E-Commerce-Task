@@ -44,7 +44,7 @@ class CustomTextFormField extends StatelessWidget {
 
         decoration: InputDecoration(
           filled: true,
-          fillColor: Colors.white,
+          fillColor: AppColors.white,
           hintText: hint,
           hintStyle: AppTextStyles.font16GreySemiBold.copyWith(
             color: AppColors.grey,
@@ -58,23 +58,23 @@ class CustomTextFormField extends StatelessWidget {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.transparent),
+            borderSide: const BorderSide(color: AppColors.transparent),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.transparent),
+            borderSide: const BorderSide(color: AppColors.transparent),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.transparent),
+            borderSide: const BorderSide(color: AppColors.transparent),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.transparent),
+            borderSide: const BorderSide(color: AppColors.transparent),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.transparent),
+            borderSide: const BorderSide(color: AppColors.transparent),
           ),
         ),
         validator: validator,

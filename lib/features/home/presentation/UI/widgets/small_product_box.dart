@@ -53,8 +53,8 @@ class SmallProductBox extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.transparent,
-                      Colors.transparent,
+                      AppColors.transparent,
+                      AppColors.transparent,
                       AppColors.black.withValues(alpha: 0.2),
                     ],
                   ),

@@ -1,8 +1,10 @@
 import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
-import 'package:ahmed_mahmoud_flutter_task/core/shared_preferences/shared_preferences.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/auth/view/screens/signin_screen.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/background_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -19,36 +21,44 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    AppConstants.profile,
-                    style: AppTextStyles.font38WhiteBold,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        AppConstants.profile,
+                        style: AppTextStyles.font38WhiteBold,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppColors.white.withValues(alpha: 0.5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: GestureDetector(
+                          onTap: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.remove('email');
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SigninScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          },
+                          child: const Text(
+                            AppConstants.logOut,
+                            style: AppTextStyles.font16WhiteSemiBold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 32),
-
                   // Email Container
                   const ProfileContainer(),
                   const SizedBox(height: 16),
-
-                  // Favorites Container
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.white12),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(Icons.favorite, color: Colors.pinkAccent),
-                        SizedBox(width: 12),
-                        Text(
-                          "Favorites",
-                          style: AppTextStyles.font14BlackSemiBold,
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -72,14 +82,11 @@ class ProfileContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white12),
       ),
-      child: Row(
+      child: const Row(
         children: [
           Icon(Icons.email, color: Colors.white),
           SizedBox(width: 12),
-          Text(
-            CacheSaver.user?.email ?? '',
-            style: AppTextStyles.font14BlackSemiBold,
-          ),
+          Text("emilys", style: AppTextStyles.font14BlackSemiBold),
         ],
       ),
     );

@@ -1,4 +1,7 @@
+import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/cubits/home_cubit/home_cubit.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/background_image.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/filter_bottom_sheet.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/loading_indicator.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/presentation/UI/widgets/stagger_tile.dart';
@@ -6,7 +9,6 @@ import 'package:ahmed_mahmoud_flutter_task/features/search/presentation/widgets/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ShowAllScreen extends StatelessWidget {
   const ShowAllScreen({super.key});
@@ -16,11 +18,7 @@ class ShowAllScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          SvgPicture.asset(
-            'assets/icons/wavesOpacity.svg',
-            height: MediaQuery.of(context).size.height / 1.5,
-            fit: BoxFit.cover,
-          ),
+          const BackGroundImage(),
           SafeArea(
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -35,14 +33,14 @@ class ShowAllScreen extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.close_rounded,
-                          color: Colors.white,
+                          color: AppColors.white,
                         ),
                       ),
                       IconButton(
                         onPressed: () => showFilterBottomSheet(context),
                         icon: const Icon(
                           Icons.settings_rounded,
-                          color: Colors.white,
+                          color: AppColors.primary,
                         ),
                       ),
                     ],
@@ -73,7 +71,7 @@ class ShowAllScreen extends StatelessWidget {
                         return Center(
                           child: Text(
                             state.message,
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: AppColors.white),
                           ),
                         );
                       } else if (state is SortedProductsLoading) {
@@ -81,7 +79,7 @@ class ShowAllScreen extends StatelessWidget {
                       } else {
                         return const FillterWidget(
                           icon: Icons.filter_vintage,
-                          message: 'Use the filter to View Products!',
+                          message: AppConstants.userFiltersToViewProducts,
                         );
                       }
                     },

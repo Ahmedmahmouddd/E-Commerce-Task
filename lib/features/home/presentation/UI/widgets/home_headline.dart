@@ -1,3 +1,4 @@
+import 'package:ahmed_mahmoud_flutter_task/core/constants/app_constants.dart';
 import 'package:ahmed_mahmoud_flutter_task/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +12,14 @@ class HomeHeadline extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("New Arrivals Just", style: AppTextStyles.font38WhiteBold),
+          Text(
+            AppConstants.newArrivalsJust,
+            style: AppTextStyles.font38WhiteBold,
+          ),
           Row(
             children: [
-              Text("For ", style: AppTextStyles.font38WhiteBold),
-              Text("You", style: AppTextStyles.font38PrimaryBold),
+              Text(AppConstants.forY, style: AppTextStyles.font38WhiteBold),
+              Text(AppConstants.you, style: AppTextStyles.font38PrimaryBold),
             ],
           ),
         ],

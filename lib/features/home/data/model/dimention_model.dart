@@ -7,11 +7,15 @@ class DimensionsModel {
 
   DimensionsModel({this.width, this.height, this.depth});
 
+  static const String widthKey = 'width';
+  static const String heightKey = 'height';
+  static const String depthKey = 'depth';
+
   factory DimensionsModel.fromJson(Map<String, dynamic> json) {
     return DimensionsModel(
-      width: (json['width'] as num?)?.toDouble(),
-      height: (json['height'] as num?)?.toDouble(),
-      depth: (json['depth'] as num?)?.toDouble(),
+      width: (json[widthKey] as num?)?.toDouble(),
+      height: (json[heightKey] as num?)?.toDouble(),
+      depth: (json[depthKey] as num?)?.toDouble(),
     );
   }
 

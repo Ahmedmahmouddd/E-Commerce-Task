@@ -1,8 +1,8 @@
-import 'package:ahmed_mahmoud_flutter_task/core/shared_preferences/shared_preferences.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/entity/user_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/auth/domain/repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 part 'signin_state.dart';
 
 // This file defines the SigninCubit class, which is responsible for handling the state of the user sign-in process.
@@ -14,6 +14,8 @@ class SigninCubit extends Cubit<SigninState> {
 
   SigninCubit(this.authRepository) : super(SigninInitial());
 
+  UserEntity? userEntity;
+
   Future<void> loginUser(String username, String password) async {
     emit(SigninLoading());
 
@@ -22,8 +24,13 @@ class SigninCubit extends Cubit<SigninState> {
     result.fold((failure) => emit(SigninFailure(message: failure)), (
       userEntity,
     ) async {
-      await CacheSaver.saveUser(userEntity.toModel());
-      await CacheSaver.getUser();
+      this.userEntity = userEntity;
+
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setString('email', userEntity.email);
+      sharedPreferences.setString('accessToken', userEntity.accessToken);
+      sharedPreferences.setInt('id', userEntity.id);
       emit(SigninSuccess(userEntity));
     });
   }

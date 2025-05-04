@@ -169,7 +169,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  '(${widget.product.reviews.length} reviews)',
+                                  '(${widget.product.reviews.length} ${AppConstants.reviews})',
                                   style: AppTextStyles.font14GreySemiBold,
                                 ),
                               ],
@@ -219,7 +219,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                             // Description
                             const Text(
-                              "Description",
+                              AppConstants.description,
                               style: AppTextStyles.font16BlackSemiBold,
                             ),
                             const SizedBox(height: 8),
@@ -273,7 +273,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             cartCubit.orderEntity!.products.any(
                               (item) => item.id == widget.product.id,
                             ))
-                        ? "Item Added To Cart"
+                        ? AppConstants.itemAddedToCart
                         : AppConstants.addToCart,
                     style: const TextStyle(
                       fontSize: 16,

@@ -50,7 +50,7 @@ class HomeBigProductCard extends StatelessWidget {
                     begin: Alignment.center,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.transparent,
+                      AppColors.transparent,
                       AppColors.black.withValues(alpha: 0.8),
                     ],
                   ),

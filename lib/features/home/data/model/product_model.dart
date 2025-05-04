@@ -5,6 +5,36 @@ import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/dimenti
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/meta_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/home/domain/entities/product_entity.dart';
 
+// Define constants for JSON keys
+class JsonKeys {
+  static const String products = 'products';
+  static const String total = 'total';
+  static const String skip = 'skip';
+  static const String limit = 'limit';
+  static const String id = 'id';
+  static const String title = 'title';
+  static const String description = 'description';
+  static const String category = 'category';
+  static const String price = 'price';
+  static const String discountPercentage = 'discountPercentage';
+  static const String rating = 'rating';
+  static const String stock = 'stock';
+  static const String tags = 'tags';
+  static const String brand = 'brand';
+  static const String sku = 'sku';
+  static const String weight = 'weight';
+  static const String dimensions = 'dimensions';
+  static const String warrantyInformation = 'warrantyInformation';
+  static const String shippingInformation = 'shippingInformation';
+  static const String availabilityStatus = 'availabilityStatus';
+  static const String reviews = 'reviews';
+  static const String returnPolicy = 'returnPolicy';
+  static const String minimumOrderQuantity = 'minimumOrderQuantity';
+  static const String meta = 'meta';
+  static const String thumbnail = 'thumbnail';
+  static const String images = 'images';
+}
+
 class ProductsResponseModel {
   final List<ProductModel>? products;
   final int? total;
@@ -20,18 +50,17 @@ class ProductsResponseModel {
 
   factory ProductsResponseModel.fromJson(Map<String, dynamic> json) {
     return ProductsResponseModel(
-      products: json['products'] != null
-          ? (json['products'] as List<dynamic>)
+      products: json[JsonKeys.products] != null
+          ? (json[JsonKeys.products] as List<dynamic>)
               .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
               .toList()
           : null,
-      total: json['total'] as int?,
-      skip: json['skip'] as int?,
-      limit: json['limit'] as int?,
+      total: json[JsonKeys.total] as int?,
+      skip: json[JsonKeys.skip] as int?,
+      limit: json[JsonKeys.limit] as int?,
     );
   }
 }
-
 
 class ProductModel {
   final int? id;
@@ -84,34 +113,34 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      category: json['category'],
-      price: (json['price'] as num?)?.toDouble(),
-      discountPercentage: (json['discountPercentage'] as num?)?.toDouble(),
-      rating: (json['rating'] as num?)?.toDouble(),
-      stock: json['stock'],
-      tags: json['tags'] != null ? List<String>.from(json['tags']) : null,
-      brand: json['brand'],
-      sku: json['sku'],
-      weight: (json['weight'] as num?)?.toDouble(),
-      dimensions: json['dimensions'] != null
-          ? DimensionsModel.fromJson(json['dimensions'])
+      id: json[JsonKeys.id],
+      title: json[JsonKeys.title],
+      description: json[JsonKeys.description],
+      category: json[JsonKeys.category],
+      price: (json[JsonKeys.price] as num?)?.toDouble(),
+      discountPercentage: (json[JsonKeys.discountPercentage] as num?)?.toDouble(),
+      rating: (json[JsonKeys.rating] as num?)?.toDouble(),
+      stock: json[JsonKeys.stock],
+      tags: json[JsonKeys.tags] != null ? List<String>.from(json[JsonKeys.tags]) : null,
+      brand: json[JsonKeys.brand],
+      sku: json[JsonKeys.sku],
+      weight: (json[JsonKeys.weight] as num?)?.toDouble(),
+      dimensions: json[JsonKeys.dimensions] != null
+          ? DimensionsModel.fromJson(json[JsonKeys.dimensions])
           : null,
-      warrantyInformation: json['warrantyInformation'],
-      shippingInformation: json['shippingInformation'],
-      availabilityStatus: json['availabilityStatus'],
-      reviews: json['reviews'] != null
-          ? (json['reviews'] as List)
+      warrantyInformation: json[JsonKeys.warrantyInformation],
+      shippingInformation: json[JsonKeys.shippingInformation],
+      availabilityStatus: json[JsonKeys.availabilityStatus],
+      reviews: json[JsonKeys.reviews] != null
+          ? (json[JsonKeys.reviews] as List)
               .map((e) => ReviewModel.fromJson(e))
               .toList()
           : null,
-      returnPolicy: json['returnPolicy'],
-      minimumOrderQuantity: json['minimumOrderQuantity'],
-      meta: json['meta'] != null ? MetaModel.fromJson(json['meta']) : null,
-      thumbnail: json['thumbnail'],
-      images: json['images'] != null ? List<String>.from(json['images']) : null,
+      returnPolicy: json[JsonKeys.returnPolicy],
+      minimumOrderQuantity: json[JsonKeys.minimumOrderQuantity],
+      meta: json[JsonKeys.meta] != null ? MetaModel.fromJson(json[JsonKeys.meta]) : null,
+      thumbnail: json[JsonKeys.thumbnail],
+      images: json[JsonKeys.images] != null ? List<String>.from(json[JsonKeys.images]) : null,
     );
   }
 

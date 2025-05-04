@@ -29,7 +29,10 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       }
     } on DioException catch (e) {
       final failure = FailureModel(
-        message: e.response?.data["message"] ?? e.message ?? "Unknown error",
+        message:
+            e.response?.data[AppConstants.message] ??
+            e.message ??
+            AppConstants.unKnownError,
       );
       return Left(failure);
     }
@@ -52,7 +55,10 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       }
     } on DioException catch (e) {
       final failure = FailureModel(
-        message: e.response?.data["message"] ?? e.message ?? "Unknown error",
+        message:
+            e.response?.data[AppConstants.message] ??
+            e.message ??
+            AppConstants.unKnownError,
       );
       return Left(failure);
     }

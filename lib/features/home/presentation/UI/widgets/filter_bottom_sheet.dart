@@ -38,7 +38,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            "Filter by Price",
+            AppConstants.filterByPrice,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
@@ -46,7 +46,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FilterOptionButton(
-                name: "Highest to Lowest",
+                name: AppConstants.highestToLowest,
                 isSelected: cubit.selectedFilter == 1,
                 onTap: () {
                   cubit.selectedFilter = 1;
@@ -55,7 +55,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 },
               ),
               FilterOptionButton(
-                name: "Lowest to Highest",
+                name: AppConstants.lowestToHighest,
                 isSelected: cubit.selectedFilter == 2,
                 onTap: () {
                   cubit.selectedFilter = 2;
@@ -67,7 +67,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           ),
           const SizedBox(height: 24),
           const Text(
-            "Filter by Date",
+            AppConstants.filterByDate,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
@@ -75,7 +75,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FilterOptionButton(
-                name: "Oldest to Newest",
+                name: AppConstants.oldestToNewest,
                 isSelected: cubit.selectedFilter == 3,
                 onTap: () {
                   cubit.selectedFilter = 3;
@@ -84,7 +84,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 },
               ),
               FilterOptionButton(
-                name: "Newest to Oldest",
+                name: AppConstants.newestToOldest,
                 isSelected: cubit.selectedFilter == 4,
                 onTap: () {
                   cubit.selectedFilter = 4;

@@ -18,10 +18,21 @@ class AppConstants {
   static const String timeNewestToOldest = "?sortBy=title&order=desc";
   static const String timeOldestToNewest = "?sortBy=title&order=asc";
   static const String checkOutPage = "Check Out";
+  static const String logOut = "Log Out";
+
   static const String userName = 'username';
   static const String password = 'password';
   static const String expiresInMins = 'expiresInMins';
   static const String message = "message";
+  static const String oldestToNewest = "Oldest to Newest";
+  static const String newestToOldest = "Newest to Oldest";
+  static const String filterByDate =  "Filter by Date";
+  static const String filterByPrice = "Filter by Price";
+  static const String itemAddedToCart = "Item Added To Cart";
+  static const String highestToLowest = "Highest to Lowest";
+  static const String description = "Description";
+  static const String lowestToHighest = "Lowest to Highest";
+  static const String reviews = "reviews";
   static const String noItemsInCart = "No items in cart";
   static const String unKnownError = "Unknown error";
   static const String loginSuccess = "Login Successful";
@@ -37,4 +48,8 @@ class AppConstants {
   static const String total = "Total: ";
   static const String confirmOrder = 'Confirm Order';
   static const String orderConfirmed = "Order Confirmed";
+  static const String newArrivalsJust = "New Arrivals Just";
+  static const String forY = "For ";
+  static const String you = "You";
+  static const String userFiltersToViewProducts = "Use the filter to View Products!";
 }

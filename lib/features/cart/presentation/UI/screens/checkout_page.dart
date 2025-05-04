@@ -1,3 +1,5 @@
+import 'package:ahmed_mahmoud_flutter_task/core/theme/app_colors.dart';
+import 'package:ahmed_mahmoud_flutter_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:ahmed_mahmoud_flutter_task/features/cart/presentation/UI/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +11,12 @@ class CheckoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<CartCubit>();
     final products = cubit.orderEntity?.products ?? [];
+    double calculateTotal(List<ProductEntity> products) {
+      return products.fold(
+        0.0,
+        (sum, product) => sum + (product.price * product.quantity),
+      );
+    }
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -28,7 +36,7 @@ class CheckoutPage extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.grey[100],
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
@@ -83,7 +91,7 @@ class CheckoutPage extends StatelessWidget {
               children: [
                 const Text('Total:', style: TextStyle(fontSize: 16)),
                 Text(
-                  '\$${cubit.orderEntity?.total ?? 0}',
+                  '\$${calculateTotal(products).toStringAsFixed(2)}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
